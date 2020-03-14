@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwua.mapper.OrderMapper">
+    <select id="findAllOrder"  resultMap="o_map">
+        select id,orderNum,orderTime,peopleCount,orderDesc,payType,orderStatus,productId,memberId from orders
+    </select>
+    <resultMap id="o_map" type="orders">
+        <id property="id" column="id"></id>
+        <result property="orderNum" column="orderNum" ></result>
+        <result property="orderTime" column="orderTime" ></result>
+        <result property="peopleCount" column="peopleCount" ></result>
+        <result property="orderDesc" column="orderDesc" ></result>
+        <result property="payType" column="payType" ></result>
+        <result property="orderStatus" column="orderStatus" ></result>
+        <result property="productId" column="productId" ></result>
+        <result property="memberId" column="memberId" ></result>
+        <association property="product" javaType="product" select="com.hwua.mapper.ProductMapper.findProductById" column="productId"></association>
+        <association property="member" javaType="member" select="com.hwua.mapper.MemberMapper.findMemberById" column="memberId"></association>
+        <collection property="travellers" ofType="travellers" javaType="list" select="com.hwua.mapper.TravellerMapper.findTravellerById" column="id"></collection>
+    </resultMap>
+
+    <select id="findOrderById"  resultMap="o_map1">
+        select id,orderNum,orderTime,peopleCount,orderDesc,payType,orderStatus,productId,memberId from orders where id=#{id}
+    </select>
+    <resultMap id="o_map1" type="orders">
+        <id property="id" column="id"></id>
+        <result property="orderNum" column="orderNum" ></result>
+        <result property="orderTime" column="orderTime" ></result>
+        <result property="peopleCount" column="peopleCount" ></result>
+        <result property="orderDesc" column="orderDesc" ></result>
+        <result property="payType" column="payType" ></result>
+        <result property="orderStatus" column="orderStatus" ></result>
+        <result property="productId" column="productId" ></result>
+        <result property="memberId" column="memberId" ></result>
+        <association property="product" javaType="product" select="com.hwua.mapper.ProductMapper.findProductById" column="productId"></association>
+        <association property="member" javaType="member" select="com.hwua.mapper.MemberMapper.findMemberById" column="memberId"></association>
+        <collection property="travellers" ofType="travellers" javaType="list" select="com.hwua.mapper.TravellerMapper.findTravellerById" column="id"></collection>
+    </resultMap>
+</mapper>

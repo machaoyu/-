@@ -1,0 +1,39 @@
+jdbc:
+  datasource:
+    driverClass: com.mysql.cj.jdbc.Driver
+    user: root
+    password: 123456
+    jdbcUrl: jdbc:mysql://localhost:3306/crmdb
+    maxPoolSize: 100
+    minPoolSize: 10
+    initialPoolSize: 10
+
+spring:
+  mvc:
+    view:
+      suffix: .jsp
+      prefix: /pages/
+    hiddenmethod:
+      filter:
+        enabled: true
+
+
+server:
+  port: 8081
+  servlet:
+    context-path: /crm
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.hwua.pojo
+  mapper-locations: classpath:com/hwua/mapper/*.xml
+
+
+pagehelper:
+    reasonable: true
+    auto-dialect: mysql
+
+shiro:
+  loginUrl: /pages/login.jsp
+  successUrl: /pages/main.jsp
+  unauthorizedUrl: /403.jsp
